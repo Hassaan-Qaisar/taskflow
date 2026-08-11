@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',  # Add the accounts app
+    'projects',  # Add the projects app
+    'tasks',  # Add the tasks app
 ]
 
 MIDDLEWARE = [
@@ -133,3 +136,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+AUTH_USER_MODEL = "accounts.User"
