@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}New project — Task Flow{% endblock %}
+{% block content %}
+<section class="container" style="max-width:560px;padding:60px 0">
+  <h1>Create a new project</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary btn-large" type="submit">Create project</button>
+  </form>
+</section>
+{% endblock %}

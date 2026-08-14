@@ -1,0 +1,161 @@
+:root {
+    --navy: #102a56;
+    --ink: #152238;
+    --blue: #2878e8;
+    --mint: #28b986;
+    --orange: #f29a35;
+    --paper: #f7f9fc;
+    --muted: #66748a;
+    --line: #e3e9f1;
+    --white: #fff
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55
+}
+
+.container {
+    width: min(1120px, calc(100% - 40px));
+    margin: auto
+}
+
+.site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--line)
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px
+}
+
+.brand {
+    display: flex;
+    align-items: center
+}
+
+.logo {
+    display: block;
+    width: auto;
+    height: 46px;
+    object-fit: contain
+}
+
+.nav-actions,
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.nav-link,
+.text-link {
+    color: var(--navy);
+    font-weight: 700;
+    text-decoration: none
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 0;
+    border-radius: 9px;
+    padding: 11px 18px;
+    font-weight: 750;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .2s ease
+}
+
+.btn:hover {
+    transform: translateY(-1px)
+}
+
+.btn-primary {
+    background: var(--blue);
+    color: var(--white);
+    box-shadow: 0 8px 18px rgba(40, 120, 232, .2)
+}
+
+.btn-dark {
+    background: var(--navy);
+    color: var(--white)
+}
+
+.btn-ghost {
+    color: var(--navy);
+    background: #edf3fb
+}
+
+.btn-large {
+    padding: 14px 21px
+}
+
+.site-footer {
+    padding: 28px 0;
+    background: var(--navy);
+    color: #dce7f7
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    font-size: 13px
+}
+
+.footer-brand {
+    color: #fff;
+    font-weight: 800
+}
+
+@media(max-width:640px) {
+    .container {
+        width: min(100% - 28px, 1120px)
+    }
+
+    .navbar {
+        min-height: 68px
+    }
+
+    .logo {
+        height: 38px
+    }
+
+    .nav-link {
+        display: none
+    }
+
+    .nav-actions {
+        gap: 8px
+    }
+
+    .btn {
+        padding: 10px 13px;
+        font-size: 14px
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px
+    }
+}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ task.title }} — Task Flow{% endblock %}
+{% block content %}
+<section class="container" style="padding:60px 0">
+  <h1>{{ task.title }}</h1>
+  <p>{{ task.description }}</p>
+  <p>Status: <strong>{{ task.get_status_display }}</strong> · Priority: <strong>{{ task.get_priority_display }}</strong></p>
+  <p><em>Status updates and comments coming next.</em></p>
+</section>
+{% endblock %}

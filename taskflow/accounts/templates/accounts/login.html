@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static socialaccount %}
+{% block title %}Log in — Task Flow{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+{% endblock %}
+{% block content %}
+<section class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-heading">
+      <p class="eyebrow">Welcome back</p>
+      <h1>Pick up where you left off.</h1>
+      <p>Log in to return to your workspace and keep the momentum going.</p>
+    </div>
+
+    <a class="btn btn-dark" href="{% provider_login_url 'google' %}">Continue with Google</a>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="form-alert" role="alert">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post" class="auth-form" novalidate>
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="form-alert" role="alert">
+          {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+      {% for field in form %}
+        <div class="field-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}<p class="field-error" role="alert">{{ error }}</p>{% endfor %}
+        </div>
+      {% endfor %}
+      <button class="btn btn-primary btn-submit" type="submit">Log in <span aria-hidden="true">→</span></button>
+    </form>
+
+    <p class="auth-switch">New to Task Flow? <a href="{% url 'accounts:register' %}">Create an account</a></p>
+  </div>
+</section>
+{% endblock %}

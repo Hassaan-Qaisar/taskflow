@@ -7,6 +7,12 @@ name = "pypi"
 django = "==6.1"
 python-dotenv = "*"
 psycopg = {extras = ["binary"], version = "*"}
+django-allauth = "*"
+requests = "*"
+celery = "*"
+sendgrid = "*"
+django-celery-beat = "*"
+redis = "*"
 
 [dev-packages]
 

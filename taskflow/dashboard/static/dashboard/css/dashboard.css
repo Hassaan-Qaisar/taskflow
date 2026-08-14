@@ -1,0 +1,109 @@
+/* taskflow/static/css/dashboard.css */
+.dashboard {
+    padding: 56px 0 90px
+}
+
+.dashboard h1 {
+    margin-bottom: 40px;
+    color: var(--navy);
+    font-size: clamp(28px, 3vw, 38px);
+    letter-spacing: -.03em
+}
+
+.dashboard-section {
+    margin-bottom: 48px
+}
+
+.section-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px
+}
+
+.dashboard-section h2 {
+    color: var(--navy);
+    font-size: 20px
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px
+}
+
+.project-card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+    color: var(--navy);
+    font-size: 16px
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.task-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff
+}
+
+.task-row-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0
+}
+
+.task-row-project {
+    color: var(--muted);
+    font-size: 12px
+}
+
+.status-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--paper);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap
+}
+
+.status-pill i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%
+}
+
+.task-row-links {
+    display: flex;
+    gap: 12px;
+    white-space: nowrap
+}
+
+.empty-state {
+    color: var(--muted)
+}
+
+@media(max-width:640px) {
+    .task-row {
+        flex-wrap: wrap
+    }
+}

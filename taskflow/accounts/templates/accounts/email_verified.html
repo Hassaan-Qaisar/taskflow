@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Email verified — Task Flow{% endblock %}
+{% block content %}
+<section class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-heading">
+      <p class="eyebrow">Success</p>
+      <h1>Your email is verified.</h1>
+      <p>You can now log in to continue.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'accounts:login' %}">Log in now</a>
+  </div>
+</section>
+{% endblock %}

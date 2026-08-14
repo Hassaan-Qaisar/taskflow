@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <p>Hello {{ user.name }},</p>
+    <p>Thanks for creating your account. Please verify your email address by clicking the button below:</p>
+    <p>
+      <a href="{{ verify_url }}" style="display:inline-block;padding:12px 20px;background:#111827;color:#fff;text-decoration:none;border-radius:6px;">
+        Verify my email
+      </a>
+    </p>
+    <p>If the button does not work, copy and paste this link into your browser:</p>
+    <p>{{ verify_url }}</p>
+    <p>Thanks,<br>Task Flow</p>
+  </body>
+</html>

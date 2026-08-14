@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Check your email — Task Flow{% endblock %}
+{% block content %}
+<section class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-heading">
+      <p class="eyebrow">Almost there</p>
+      <h1>Check your inbox.</h1>
+      <p>We sent a verification link to your email. Please open it to activate your account.</p>
+    </div>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="form-alert" role="alert">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post" action="{% url 'accounts:resend-verification' %}" class="auth-form" novalidate>
+      {% csrf_token %}
+      <div class="field-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <button class="btn btn-dark btn-submit" type="submit">Resend verification email</button>
+    </form>
+
+    <p class="auth-extra">You can request another email after 1 minute.</p>
+    <a class="btn btn-primary" href="{% url 'accounts:login' %}">Back to login</a>
+  </div>
+</section>
+{% endblock %}
