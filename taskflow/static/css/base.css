@@ -26,6 +26,16 @@ body {
     line-height: 1.55
 }
 
+.site-overall {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+.site-overall main {
+    flex: 1
+}
+
 .container {
     width: min(1120px, calc(100% - 40px));
     margin: auto

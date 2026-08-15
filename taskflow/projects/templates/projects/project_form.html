@@ -1,12 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}New project — Task Flow{% endblock %}
-{% block content %}
-<section class="container" style="max-width:560px;padding:60px 0">
-  <h1>Create a new project</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary btn-large" type="submit">Create project</button>
-  </form>
-</section>
-{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/workspace.css' %}">{% endblock %}
+{% block content %}<section class="container form-page"><div class="form-card"><p class="eyebrow">Project setup</p><h1>Create a new project</h1><p class="form-intro">Give your team a clear place to plan, assign, and track work.</p><form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-primary btn-large" type="submit">Create project</button></form></div></section>{% endblock %}

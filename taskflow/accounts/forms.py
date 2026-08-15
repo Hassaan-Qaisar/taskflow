@@ -74,12 +74,10 @@ class RegisterForm(forms.Form):
 
 
 class ResendVerificationForm(forms.Form):
-    email = forms.EmailField(required=False)
+    email = forms.EmailField()
 
     def clean_email(self):
-        email = self.cleaned_data.get("email")
-        if not email:
-            return ""
+        email = self.cleaned_data["email"]
 
         email = email.lower()
         try:

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Update task — Task Flow
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/workspace.css' %}" />
+{% endblock %}
+{% block content %}
+  <section class="container form-page">
+    <div class="form-card">
+      <p class="eyebrow">Task settings</p><h1>{{ task.title }}</h1><p class="form-intro">
+        {% if can_manage_task %}
+          As project owner, you can edit all task fields.
+        {% else %}
+          You can only update task status.
+        {% endif %}
+      </p>
+      <form method="post">
+        {% csrf_token %}{{ form.as_p }}<button class="btn btn-primary" type="submit">Save changes</button>
+    </div>
+  </section>
+{% endblock %}

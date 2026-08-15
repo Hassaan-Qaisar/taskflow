@@ -1,59 +1,47 @@
-<!-- dashboard/templates/dashboard/dashboard.html -->
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
-{% block title %}Dashboard — Task Flow{% endblock %}
+{% block title %}
+  Dashboard — Task Flow
+{% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}" />
 {% endblock %}
 {% block content %}
-<section class="container dashboard">
-  <p class="eyebrow">Welcome back</p>
-  <h1>{{ request.user.name }}'s workspace</h1>
-
-  <div class="dashboard-section">
-    <div class="section-heading-row">
-      <h2>Your projects</h2>
-      <a class="btn btn-ghost" href="{% url 'projects:create' %}">+ New project</a>
-    </div>
-
-    {% if owned_projects %}
-    <div class="project-grid">
-      {% for project in owned_projects %}
-      <article class="project-card">
-        <h3>{{ project.name }}</h3>
-        <a class="text-link" href="{% url 'projects:detail' project.pk %}">View project →</a>
-      </article>
-      {% endfor %}
-    </div>
-    {% else %}
-    <p class="empty-state">You haven't created a project yet. <a class="text-link" href="{% url 'projects:create' %}">Create your first one →</a></p>
-    {% endif %}
-  </div>
-
-  <div class="dashboard-section">
-    <h2>Tasks assigned to you</h2>
-    {% if assigned_tasks %}
-    <div class="task-list">
-      {% for task in assigned_tasks %}
-      <article class="task-row">
-        <div class="task-row-main">
-          <strong>{{ task.title }}</strong>
-          <span class="task-row-project">{{ task.project.name }}</span>
+  <section class="container dashboard">
+    <p class="eyebrow">Welcome back</p><h1>{{ request.user.name }}'s workspace</h1><div class="dashboard-section">
+      <div class="section-heading-row">
+        <h2>Your projects</h2><a class="btn btn-ghost" href="{% url 'projects:create' %}">+ New project</a>
+      </div>
+      {% if owned_projects %}
+        <div class="project-grid">
+          {% for project in owned_projects %}
+            <article class="project-card">
+              <h3>{{ project.name }}</h3><a class="text-link" href="{% url 'projects:detail' project.pk %}">View project →</a>
+            </article>
+          {% endfor %}
         </div>
-        <span class="status-pill status-{{ task.status }}">
-          <i class="label-{% if task.status == 'todo' %}blue{% elif task.status == 'in_progress' %}orange{% else %}green{% endif %}"></i>
-          {{ task.get_status_display }}
-        </span>
-        <div class="task-row-links">
-          <a class="text-link" href="{% url 'tasks:detail' task.pk %}">View task</a>
-          <a class="text-link" href="{% url 'projects:detail' task.project.pk %}">View project</a>
-        </div>
-      </article>
-      {% endfor %}
+      {% else %}
+        <p class="empty-state">
+          You haven't created a project yet. <a class="text-link" href="{% url 'projects:create' %}">Create your first one →</a>
+        </p>
+      {% endif %}
     </div>
-    {% else %}
-    <p class="empty-state">No tasks assigned to you right now.</p>
-    {% endif %}
-  </div>
-</section>
+    <div class="dashboard-section">
+      <h2>Tasks assigned to you</h2>{% if assigned_tasks %}
+        <div class="task-list">
+          {% for task in assigned_tasks %}
+            <article class="task-row">
+              <div class="task-row-main">
+                <strong>{{ task.title }}</strong><span class="task-row-project">{{ task.project.name }}</span>
+              </div><span class="status-pill">{{ task.get_status_display }}</span><div class="task-row-links">
+                <a class="text-link" href="{% url 'tasks:detail' task.pk %}">View task</a><a class="text-link" href="{% url 'projects:detail' task.project.pk %}">View project</a>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state">No tasks assigned to you right now.</p>
+      {% endif %}
+    </div>
+  </section>
 {% endblock %}

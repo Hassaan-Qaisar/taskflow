@@ -1,10 +1,43 @@
-{% extends "base.html" %}
-{% block title %}{{ task.title }} — Task Flow{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{ task.title }} — Task Flow
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/workspace.css' %}" />
+{% endblock %}
 {% block content %}
-<section class="container" style="padding:60px 0">
-  <h1>{{ task.title }}</h1>
-  <p>{{ task.description }}</p>
-  <p>Status: <strong>{{ task.get_status_display }}</strong> · Priority: <strong>{{ task.get_priority_display }}</strong></p>
-  <p><em>Status updates and comments coming next.</em></p>
-</section>
+  <section class="container workspace-page">
+    {% if messages %}
+      <div class="message-stack">
+        {% for message in messages %}
+          <p class="message">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <article class="detail-card">
+      <div class="detail-heading">
+        <div>
+          <p class="eyebrow">Task details</p><h1>{{ task.title }}</h1>
+        </div><span class="status-pill">{{ task.get_status_display }}</span>
+      </div>
+      <p class="detail-description">{{ task.description|default:'No description yet.' }}</p>
+      <div class="detail-meta">
+        <span><b>Project</b><a href="{% url 'projects:detail' task.project.pk %}">{{ task.project.name }}</a></span><span><b>Priority</b>{{ task.get_priority_display }}</span><span>
+          <b>Assigned to</b>{% if task.assigned_to %}
+            {{ task.assigned_to.name|default:task.assigned_to.email }}
+          {% else %}
+            Unassigned
+          {% endif %}
+        </span>
+      </div>
+      <div class="detail-actions">
+        {% if can_manage_task %}
+          <a class="btn btn-primary" href="{% url 'tasks:edit' task.pk %}">Edit task</a>
+        {% elif can_update_status %}
+          <a class="btn btn-primary" href="{% url 'tasks:edit' task.pk %}">Update status</a>
+        {% endif %}
+      </div>
+    </article>
+  </section>
 {% endblock %}

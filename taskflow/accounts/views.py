@@ -195,7 +195,10 @@ class ResendVerificationView(FormView):
 
     def form_valid(self, form):
         email = form.cleaned_data["email"]
-        user = User.objects.get(email=email)
+        user = User.objects.filter(email=email).first()
+        if not user:
+            messages.error(self.request, "No account found with that email.")
+            return redirect("accounts:verify-email-sent")
         verification, _ = EmailVerification.objects.get_or_create(user=user)
         verification.last_sent_at = timezone.now()
         verification.save(update_fields=["last_sent_at"])
@@ -204,6 +207,11 @@ class ResendVerificationView(FormView):
         return redirect("accounts:verify-email-sent")
 
     def form_invalid(self, form):
-        for error in form.non_field_errors():
-            messages.error(self.request, str(error))
-        return redirect("accounts:login")
+        for field_name, errors in form.errors.items():
+            label = "Email" if field_name == "email" else ""
+            for error in errors:
+                if label:
+                    messages.error(self.request, f"{label}: {error}")
+                else:
+                    messages.error(self.request, str(error))
+        return redirect("accounts:verify-email-sent")
